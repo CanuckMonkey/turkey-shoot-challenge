@@ -33,7 +33,7 @@ class Hunting(GameState):
         self.world_rect = self.world_surf.get_rect()
         self.background  = make_background(prepare.WORLD_SIZE)
         self.all_sprites = pg.sprite.LayeredDirty()
-        self.map_sprites = pg.sprite.LayeredDirty()
+        self.map_sprites = pg.sprite.Group()
         self.colliders = pg.sprite.Group()
         self.ui = pg.sprite.Group()
         self.noise_detector = NoiseDetector((10, 80), self.ui)
