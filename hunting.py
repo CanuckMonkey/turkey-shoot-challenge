@@ -139,7 +139,8 @@ class Hunting(GameState):
                                                               True, True, footprint_collide)
         for t_bullet in turkey_hits:
             for turkey in turkey_hits[t_bullet]:
-                Roast(turkey.pos, self.roasts, self.all_sprites)
+                Roast(turkey.pos, dt, self.roasts, self.all_sprites)
+
 
         if self.hunter.shells < self.hunter.max_shells:
             if self.hunter.collider.colliderect(self.ammo_crate.rect.inflate(16, 16)):

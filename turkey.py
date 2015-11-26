@@ -1,4 +1,4 @@
-from random import randint, choice
+﻿from random import randint, choice
 import itertools as it
 import pygame as pg
 
@@ -185,10 +185,29 @@ class Turkey(pg.sprite.DirtySprite):
 
 class Roast(pg.sprite.DirtySprite):
     """Created when a Turkey is killed by the player."""
-    def __init__(self, pos, *groups):
+    def __init__(self, pos, dt, *groups):
         super(Roast, self).__init__(*groups)
         self.image = prepare.GFX["roast"]
+        self.hidden = self.image.copy()
+        self.hidden.set_alpha(0)
+        self.visible = self.image.copy()
+        self.is_visible = True
         self.rect = self.image.get_rect(center=pos)
         self.collider = self.rect.copy()
+        self.animations = pg.sprite.Group()
+        no_blink = Task(self.blink(dt), 5000, args=(self,))
+        slow_blink = Task(self.blink(dt, True), 500, 8, args=(self,))
+        fast_blink = Task(self.blink(dt, True), 100, 10, args=(self,))
+        gone = Task(self.kill(), 2000, args=(self,))
+        no_blink.chain(slow_blink, fast_blink, gone)
+        self.animations.add(no_blink)
 
-
+    def blink(self, dt, toggle=False):
+        if toggle:
+            if self.is_visible:
+                self.image = self.hidden
+                self.is_visible = False
+            else:
+                self.image = self.visible
+                self.is_visible = True
+        self.animations.update(dt)
