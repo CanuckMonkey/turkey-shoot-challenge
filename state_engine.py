@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import pygame as pg
 import prepare
 
@@ -85,7 +85,9 @@ class Game(object):
             self.update(dt)
             self.draw()
             pg.display.update()
-            pg.display.set_caption("{}".format(self.clock.get_fps()))
+
+            pg.display.set_caption(prepare.ORIGINAL_CAPTION+
+                                   "     FPS: {}".format(self.clock.get_fps()))
 
 
 class GameState(object):
