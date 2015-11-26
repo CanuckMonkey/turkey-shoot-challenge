@@ -1,4 +1,4 @@
-import itertools
+﻿import itertools
 from math import degrees, pi
 import pygame as pg
 
@@ -83,7 +83,8 @@ class Hunter(pg.sprite.DirtySprite):
         self.image = pg.transform.rotate(self.current_image, degrees(self.angle))
         self.rect = self.image.get_rect(center=self.pos)
 
-    def update(self, dt, keys, bullets, turkeys, colliders, all_sprites, animations):
+    def update(self, dt, keys, bullets, turkeys, colliders, all_sprites,
+               animations, world_rect):
         self.hustle = 1
         if any((keys[k] for k in self.controls["hustle"])):
             self.hustle = 1.5
@@ -101,9 +102,9 @@ class Hunter(pg.sprite.DirtySprite):
         for action in self.actions:
 
             if any((keys[key] for key in self.controls[action])):
-                self.actions[action](dt, colliders)
+                self.actions[action](dt, colliders, world_rect)
                 if action == "move":
-                    self.actions[action](dt, colliders)
+                    self.actions[action](dt, colliders, world_rect)
 
                 else:
                     self.actions[action](dt)
@@ -126,7 +127,7 @@ class Hunter(pg.sprite.DirtySprite):
     def turn_right(self, dt, *args):
         self.turn(dt, -1)
 
-    def move(self, dt, colliders):
+    def move(self, dt, colliders, world_rect):
         if self.state == "shoot":
             return
         elif self.state != "move":
@@ -139,6 +140,8 @@ class Hunter(pg.sprite.DirtySprite):
         if not any((collider.colliderect(obj.collider) for obj in colliders)):
             self.pos = pos
             self.rect.center = self.pos
+            self.rect.clamp_ip(world_rect)
+            self.pos = self.rect.center
             self.collider.center = self.pos
 
     def shoot(self, bullets, turkeys, all_sprites, animations):
