@@ -139,7 +139,15 @@ class Hunting(GameState):
                                                               True, True, footprint_collide)
         for t_bullet in turkey_hits:
             for turkey in turkey_hits[t_bullet]:
-                Roast(turkey.pos, dt, self.roasts, self.all_sprites)
+                roast = Roast(turkey.pos, dt, self.roasts, self.all_sprites)
+                no_blink = Task(roast.blink, 5000)
+                slow_blink = Task(roast.blink, 400, 10, args=(True,))
+                fast_blink = Task(roast.blink, 100, 10, args=(True,))
+                gone = Task(roast.kill)
+                fast_blink.chain(gone)
+                slow_blink.chain(fast_blink)
+                no_blink.chain(slow_blink)
+                self.animations.add(no_blink)
 
 
         if self.hunter.shells < self.hunter.max_shells:

@@ -188,21 +188,14 @@ class Roast(pg.sprite.DirtySprite):
     def __init__(self, pos, dt, *groups):
         super(Roast, self).__init__(*groups)
         self.image = prepare.GFX["roast"]
-        self.hidden = self.image.copy()
-        self.hidden.set_alpha(0)
+        self.hidden = self.image.convert_alpha()
+        self.hidden.fill((0, 0, 0, 0))
         self.visible = self.image.copy()
         self.is_visible = True
         self.rect = self.image.get_rect(center=pos)
         self.collider = self.rect.copy()
-        self.animations = pg.sprite.Group()
-        no_blink = Task(self.blink(dt), 5000, args=(self,))
-        slow_blink = Task(self.blink(dt, True), 500, 8, args=(self,))
-        fast_blink = Task(self.blink(dt, True), 100, 10, args=(self,))
-        gone = Task(self.kill(), args=(self,))
-        no_blink.chain(slow_blink, fast_blink, gone)
-        self.animations.add(no_blink)
 
-    def blink(self, dt, toggle=False):
+    def blink(self, toggle=False):
         if toggle:
             if self.is_visible:
                 self.image = self.hidden
@@ -210,4 +203,3 @@ class Roast(pg.sprite.DirtySprite):
             else:
                 self.image = self.visible
                 self.is_visible = True
-        self.animations.update(dt)
