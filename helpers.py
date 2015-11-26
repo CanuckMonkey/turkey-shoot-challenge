@@ -45,13 +45,15 @@ class WorldMap(pg.sprite.Sprite):
     def update(self, world_map, map_sprites):
         self.surf.fill(self.frame_color)
         width, height = world_map.get_size()
-        my_map = pg.transform.scale(world_map, (int(width / 4), int(height / 4)))
+        ICON_SIZE = 4
+        my_map = pg.transform.scale(world_map, (int(width / ICON_SIZE),
+                                                int(height / ICON_SIZE)))
         #my_map = world_map.copy()
         #my_sprites = map_sprites.copy()
         for sprite in map_sprites:
             sprite.center_orig = sprite.rect.center
-            sprite.rect.top = int(sprite.rect.top / 4)
-            sprite.rect.left = int(sprite.rect.left / 4)
+            sprite.rect.top = int(sprite.rect.top / ICON_SIZE)
+            sprite.rect.left = int(sprite.rect.left / ICON_SIZE)
         map_sprites.draw(my_map)
         mini_map = pg.transform.scale(my_map, self.inner_rect.size)
         self.surf.blit(mini_map, self.inner_rect)

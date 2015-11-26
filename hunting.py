@@ -99,6 +99,7 @@ class Hunting(GameState):
             self.trees.add(tree)
             self.colliders.add(tree)
             self.all_sprites.add(tree)
+            #self.map_sprites.add(tree)
 
     def add_flock(self):
         """Add a Flock of birds."""
