@@ -139,10 +139,13 @@ class Hunter(pg.sprite.DirtySprite):
         collider.center = pos
         if not any((collider.colliderect(obj.collider) for obj in colliders)):
             self.pos = pos
-            self.rect.center = self.pos
-            self.rect.clamp_ip(world_rect)
-            self.pos = self.rect.center
+            #self.rect.center = self.pos
+            #self.rect.clamp_ip(world_rect)
+            #self.pos = self.rect.center
             self.collider.center = self.pos
+            self.collider.clamp_ip(world_rect)
+            self.pos = self.collider.center
+            self.rect.center = self.pos
 
     def shoot(self, bullets, turkeys, all_sprites, animations):
         """
