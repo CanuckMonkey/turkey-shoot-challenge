@@ -198,7 +198,7 @@ class Roast(pg.sprite.DirtySprite):
         no_blink = Task(self.blink(dt), 5000, args=(self,))
         slow_blink = Task(self.blink(dt, True), 500, 8, args=(self,))
         fast_blink = Task(self.blink(dt, True), 100, 10, args=(self,))
-        gone = Task(self.kill(), 2000, args=(self,))
+        gone = Task(self.kill(), args=(self,))
         no_blink.chain(slow_blink, fast_blink, gone)
         self.animations.add(no_blink)
 
