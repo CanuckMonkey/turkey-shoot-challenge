@@ -30,7 +30,7 @@ class Icon(pg.sprite.DirtySprite):
 
 class WorldMap(pg.sprite.Sprite):
     def __init__(self, topleft, size, frame_color, frame_width,
-                 world_map, map_sprites, *groups):
+                 world_map, map_sprites, trees, *groups):
         super(WorldMap, self).__init__(*groups)
         self.frame_rect = pg.Rect((0, 0), size)
         shrink = -frame_width * 2
@@ -40,20 +40,22 @@ class WorldMap(pg.sprite.Sprite):
 
         self.frame_color = parse_color(frame_color)
         self.frame_width = frame_width
-        self.update(world_map, map_sprites)
+        self.update(world_map, map_sprites, trees)
 
-    def update(self, world_map, map_sprites):
+    def update(self, world_map, map_sprites, trees):
         self.surf.fill(self.frame_color)
         width, height = world_map.get_size()
-        ICON_SIZE = 4
-        my_map = pg.transform.scale(world_map, (int(width / ICON_SIZE),
+        ICON_SIZE = 5
+        tree_map = world_map.copy()
+        trees.draw(tree_map)
+        my_map = pg.transform.scale(tree_map, (int(width / ICON_SIZE),
                                                 int(height / ICON_SIZE)))
         #my_map = world_map.copy()
         #my_sprites = map_sprites.copy()
         for sprite in map_sprites:
             sprite.center_orig = sprite.rect.center
-            sprite.rect.top = int(sprite.rect.top / ICON_SIZE)
-            sprite.rect.left = int(sprite.rect.left / ICON_SIZE)
+            sprite.rect.centerx = int(sprite.rect.centerx / ICON_SIZE)
+            sprite.rect.centery = int(sprite.rect.centery / ICON_SIZE)
         map_sprites.draw(my_map)
         mini_map = pg.transform.scale(my_map, self.inner_rect.size)
         self.surf.blit(mini_map, self.inner_rect)

@@ -65,7 +65,7 @@ class Hunting(GameState):
         Icon((10, 45), "roast", self.ui)
         self.world_map = WorldMap((1054, 20), (208, 208), (58, 41, 18),
                                   4, self.background, self.map_sprites,
-                                 self.ui)
+                                 self.trees, self.ui)
 
         self.add_flock()
 
@@ -116,7 +116,7 @@ class Hunting(GameState):
                                     self.colliders, self.all_sprites, self.animations)
         self.turkeys.update(dt, self.trees)
         self.bullets.update(dt)
-        self.world_map.update(self.background, self.map_sprites)
+        self.world_map.update(self.background, self.map_sprites, self.trees)
         for sprite in self.all_sprites:
             self.all_sprites.change_layer(sprite, sprite.collider.bottom)
 
