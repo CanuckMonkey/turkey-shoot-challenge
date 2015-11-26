@@ -88,10 +88,7 @@ class Hunting(GameState):
         """Spawn trees."""
         self.trees = pg.sprite.Group()
         w, h  = prepare.WORLD_SIZE
-        if prepare.HUGE_BULLET:
-            num_trees = 0
-        else:
-            num_trees = 120
+        num_trees = 120
         for _ in range(num_trees):
             while True:
                 pos = (randint(50, w - 20), randint(20, h - 20))
@@ -120,8 +117,6 @@ class Hunting(GameState):
                                     self.colliders, self.all_sprites, self.animations)
         self.turkeys.update(dt, self.trees)
         self.bullets.update(dt)
-        if prepare.HUGE_BULLET:
-            self.map_sprites.add(self.bullets)
         self.world_map.update(self.background, self.map_sprites, self.trees)
         for sprite in self.all_sprites:
             self.all_sprites.change_layer(sprite, sprite.collider.bottom)
