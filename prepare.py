@@ -1,4 +1,4 @@
-import os
+﻿import os
 import pygame as pg
 import tools
 
@@ -6,7 +6,7 @@ import tools
 SCREEN_SIZE = (1280, 720)
 WORLD_SIZE = (3200, 3200)
 ORIGINAL_CAPTION = "Turkey Shoot"
-
+HUGE_BULLET = 0
 
 pg.mixer.pre_init(44100, -16, 1, 512)
 pg.init()

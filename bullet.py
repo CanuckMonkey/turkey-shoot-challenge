@@ -1,8 +1,7 @@
-from math import degrees
+﻿from math import degrees
 import pygame as pg
 import prepare
 from angles import project
-
 
 class Bullet(pg.sprite.DirtySprite):
     base_image = prepare.GFX["bullet"]
@@ -11,7 +10,11 @@ class Bullet(pg.sprite.DirtySprite):
         self.pos = pos
         self.angle = angle
         self.speed = 500 / 1000. #30 pixels per second
-        self.image = pg.Surface((4, 4)).convert()
+        if prepare.HUGE_BULLET:
+            bullet_size = 50
+        else:
+            bullet_size = 4
+        self.image = pg.Surface((bullet_size, bullet_size)).convert()
         self.image.fill(pg.Color("gray30"))
         self.rect = self.image.get_rect(center=self.pos)
 
