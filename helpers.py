@@ -1,4 +1,4 @@
-from __future__ import division
+﻿from __future__ import division
 from random import shuffle, randint
 from itertools import cycle
 import pygame as pg
@@ -27,6 +27,27 @@ class Icon(pg.sprite.DirtySprite):
         super(Icon, self).__init__(*groups)
         self.image = prepare.GFX[img_name]
         self.rect = self.image.get_rect(topleft=topleft)
+
+class WorldMap(pg.sprite.Sprite):
+    def __init__(self, topleft, size, frame_color, frame_width,
+                 world_map, map_sprites, *groups):
+        super(WorldMap, self).__init__(*groups)
+        self.frame_rect = pg.Rect((0, 0), size)
+        shrink = -frame_width * 2
+        self.inner_rect = self.frame_rect.inflate(shrink, shrink)
+        self.surf = pg.Surface(self.frame_rect.size)
+        self.rect = self.surf.get_rect(topleft=topleft)
+
+        self.frame_color = parse_color(frame_color)
+        self.frame_width = frame_width
+        self.update(world_map, map_sprites)
+
+    def update(self, world_map, map_sprites):
+        self.surf.fill(self.frame_color)
+        map_sprites.draw(world_map)
+        mini_map = pg.transform.scale(world_map, self.inner_rect.size)
+        self.surf.blit(mini_map, self.inner_rect)
+        self.image = self.surf
 
 
 class StatusMeter(pg.sprite.Sprite):

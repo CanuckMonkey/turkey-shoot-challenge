@@ -1,4 +1,4 @@
-from random import randint, sample, choice
+﻿from random import randint, sample, choice
 import pygame as pg
 import prepare
 from state_engine import GameState
@@ -7,7 +7,7 @@ from hunter import Hunter
 from turkey import Turkey, Roast
 from tree import Tree, Leaf
 from leaf_spots import leaf_spots
-from helpers import AmmoCrate, NoiseDetector, Icon, Duck, Flock
+from helpers import AmmoCrate, NoiseDetector, Icon, Duck, Flock, WorldMap
 from labels import Label
 
 
@@ -33,17 +33,20 @@ class Hunting(GameState):
         self.world_rect = self.world_surf.get_rect()
         self.background  = make_background(prepare.WORLD_SIZE)
         self.all_sprites = pg.sprite.LayeredDirty()
+        self.map_sprites = pg.sprite.LayeredDirty()
         self.colliders = pg.sprite.Group()
         self.ui = pg.sprite.Group()
         self.noise_detector = NoiseDetector((10, 80), self.ui)
         self.hunter = Hunter(self.world_rect.center, 0,
-                                       self.noise_detector, self.all_sprites)
+                                       self.noise_detector, self.all_sprites,
+                                       self.map_sprites)
         self.turkeys = self.add_turkeys()
         self.bullets = pg.sprite.Group()
         self.make_trees()
         hx, hy = self.hunter.rect.center
         self.ammo_crate = AmmoCrate((hx - 50, hy - 50), self.colliders,
-                                                          self.all_sprites)
+                                                          self.all_sprites,
+                                                          self.map_sprites)
         self.all_sprites.clear(self.world_surf, self.background)
         self.leaves = pg.sprite.Group()
         self.roasts = pg.sprite.Group()
@@ -60,6 +63,10 @@ class Hunting(GameState):
                                              {"topleft": (50, 50)}, **style)
         Icon((20, 3), "shell", self.ui)
         Icon((10, 45), "roast", self.ui)
+        self.world_map = WorldMap((1054, 20), (208, 208), (58, 41, 18),
+                                  4, self.background, self.map_sprites,
+                                 self.ui)
+
         self.add_flock()
 
     def wind_gust(self):
@@ -108,6 +115,7 @@ class Hunting(GameState):
                                     self.colliders, self.all_sprites, self.animations)
         self.turkeys.update(dt, self.trees)
         self.bullets.update(dt)
+        self.world_map.update(self.background, self.map_sprites)
         for sprite in self.all_sprites:
             self.all_sprites.change_layer(sprite, sprite.collider.bottom)
 

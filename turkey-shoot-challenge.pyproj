@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{cfe97f78-a441-4aa4-b69b-1ba55783f0e6}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>main.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="attribution.txt" />
+    <Content Include="resources\fonts\nixieone.ttf" />
+    <Content Include="resources\fonts\pretzel.ttf" />
+    <Content Include="resources\graphics\bullet.png" />
+    <Content Include="resources\graphics\crate.png" />
+    <Content Include="resources\graphics\duck1.png" />
+    <Content Include="resources\graphics\duck2.png" />
+    <Content Include="resources\graphics\grass.png" />
+    <Content Include="resources\graphics\idle_0.png" />
+    <Content Include="resources\graphics\idle_1.png" />
+    <Content Include="resources\graphics\idle_10.png" />
+    <Content Include="resources\graphics\idle_11.png" />
+    <Content Include="resources\graphics\idle_12.png" />
+    <Content Include="resources\graphics\idle_13.png" />
+    <Content Include="resources\graphics\idle_14.png" />
+    <Content Include="resources\graphics\idle_15.png" />
+    <Content Include="resources\graphics\idle_16.png" />
+    <Content Include="resources\graphics\idle_17.png" />
+    <Content Include="resources\graphics\idle_18.png" />
+    <Content Include="resources\graphics\idle_2.png" />
+    <Content Include="resources\graphics\idle_3.png" />
+    <Content Include="resources\graphics\idle_4.png" />
+    <Content Include="resources\graphics\idle_5.png" />
+    <Content Include="resources\graphics\idle_6.png" />
+    <Content Include="resources\graphics\idle_7.png" />
+    <Content Include="resources\graphics\idle_8.png" />
+    <Content Include="resources\graphics\idle_9.png" />
+    <Content Include="resources\graphics\leaf-strip1.png" />
+    <Content Include="resources\graphics\leaf-strip2.png" />
+    <Content Include="resources\graphics\leaf-strip3.png" />
+    <Content Include="resources\graphics\leaf-strip4.png" />
+    <Content Include="resources\graphics\leaf-strip5.png" />
+    <Content Include="resources\graphics\leaf-strip6.png" />
+    <Content Include="resources\graphics\move_0.png" />
+    <Content Include="resources\graphics\move_1.png" />
+    <Content Include="resources\graphics\move_10.png" />
+    <Content Include="resources\graphics\move_11.png" />
+    <Content Include="resources\graphics\move_12.png" />
+    <Content Include="resources\graphics\move_13.png" />
+    <Content Include="resources\graphics\move_14.png" />
+    <Content Include="resources\graphics\move_15.png" />
+    <Content Include="resources\graphics\move_16.png" />
+    <Content Include="resources\graphics\move_17.png" />
+    <Content Include="resources\graphics\move_18.png" />
+    <Content Include="resources\graphics\move_19.png" />
+    <Content Include="resources\graphics\move_2.png" />
+    <Content Include="resources\graphics\move_3.png" />
+    <Content Include="resources\graphics\move_4.png" />
+    <Content Include="resources\graphics\move_5.png" />
+    <Content Include="resources\graphics\move_6.png" />
+    <Content Include="resources\graphics\move_7.png" />
+    <Content Include="resources\graphics\move_8.png" />
+    <Content Include="resources\graphics\move_9.png" />
+    <Content Include="resources\graphics\roast.png" />
+    <Content Include="resources\graphics\shell.png" />
+    <Content Include="resources\graphics\shoot_0.png" />
+    <Content Include="resources\graphics\shoot_1.png" />
+    <Content Include="resources\graphics\shoot_2.png" />
+    <Content Include="resources\graphics\tree1.png" />
+    <Content Include="resources\graphics\tree2.png" />
+    <Content Include="resources\graphics\tree3.png" />
+    <Content Include="resources\graphics\tree4.png" />
+    <Content Include="resources\graphics\tree5.png" />
+    <Content Include="resources\graphics\tree6.png" />
+    <Content Include="resources\graphics\turkey-sheet.png" />
+    <Content Include="resources\music\woodland.ogg" />
+    <Content Include="resources\sounds\ducks.ogg" />
+    <Content Include="resources\sounds\gobble1.ogg" />
+    <Content Include="resources\sounds\gobble2.ogg" />
+    <Content Include="resources\sounds\gobble3.ogg" />
+    <Content Include="resources\sounds\gobble4.ogg" />
+    <Content Include="resources\sounds\gobble5.ogg" />
+    <Content Include="resources\sounds\gobble6.ogg" />
+    <Content Include="resources\sounds\gunclick.ogg" />
+    <Content Include="resources\sounds\gunload.ogg" />
+    <Content Include="resources\sounds\gunshot.ogg" />
+    <Content Include="resources\sounds\knifesharpener.ogg" />
+    <Content Include="resources\sounds\rustle1.ogg" />
+    <Content Include="resources\sounds\rustle10.ogg" />
+    <Content Include="resources\sounds\rustle11.ogg" />
+    <Content Include="resources\sounds\rustle12.ogg" />
+    <Content Include="resources\sounds\rustle13.ogg" />
+    <Content Include="resources\sounds\rustle14.ogg" />
+    <Content Include="resources\sounds\rustle15.ogg" />
+    <Content Include="resources\sounds\rustle16.ogg" />
+    <Content Include="resources\sounds\rustle17.ogg" />
+    <Content Include="resources\sounds\rustle18.ogg" />
+    <Content Include="resources\sounds\rustle19.ogg" />
+    <Content Include="resources\sounds\rustle2.ogg" />
+    <Content Include="resources\sounds\rustle20.ogg" />
+    <Content Include="resources\sounds\rustle3.ogg" />
+    <Content Include="resources\sounds\rustle4.ogg" />
+    <Content Include="resources\sounds\rustle5.ogg" />
+    <Content Include="resources\sounds\rustle6.ogg" />
+    <Content Include="resources\sounds\rustle7.ogg" />
+    <Content Include="resources\sounds\rustle8.ogg" />
+    <Content Include="resources\sounds\rustle9.ogg" />
+    <Content Include="resources\sounds\step1.ogg" />
+    <Content Include="resources\sounds\step2.ogg" />
+    <Content Include="resources\sounds\wind.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="angles.py" />
+    <Compile Include="animation.py" />
+    <Compile Include="bullet.py" />
+    <Compile Include="helpers.py" />
+    <Compile Include="hunter.py" />
+    <Compile Include="hunting.py" />
+    <Compile Include="labels.py" />
+    <Compile Include="leaf_spots.py" />
+    <Compile Include="main.py" />
+    <Compile Include="prepare.py" />
+    <Compile Include="state_engine.py" />
+    <Compile Include="tools.py" />
+    <Compile Include="tree.py" />
+    <Compile Include="turkey.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\" />
+    <Folder Include="resources\fonts" />
+    <Folder Include="resources\graphics" />
+    <Folder Include="resources\music" />
+    <Folder Include="resources\sounds" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>
