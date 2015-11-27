@@ -208,6 +208,10 @@ class Hunting(GameState):
     def draw(self, surface):
         for turkey in self.turkeys:
             pg.draw.rect(turkey.image, (255, 0, 0), turkey.collider)
+        for tree in self.trees:
+            pg.draw.rect(tree.image, (0, 255, 0), tree.collider)
+        for bullet in self.bullets:
+            pg.draw.rect(bullet.image, (255, 255, 255), bullet.collider)
 
         self.all_sprites.draw(self.world_surf)
         rect = self.get_view_rect()

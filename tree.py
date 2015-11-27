@@ -21,7 +21,6 @@ class Tree(pg.sprite.DirtySprite):
         else:
             self.collider = pg.Rect(x + 39, y + 102, 14, 10)
             self.leaf_fall_distance = 64
-        pg.draw.rect(self.image, (0, 0, 0), self.collider)
 
 
 class Leaf(pg.sprite.DirtySprite):
