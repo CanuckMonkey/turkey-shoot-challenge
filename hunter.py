@@ -1,5 +1,6 @@
 ﻿import itertools
 from math import degrees, pi
+from random import randint, random
 import pygame as pg
 
 import prepare
@@ -160,13 +161,17 @@ class Hunter(pg.sprite.DirtySprite):
                 self.shells -= 1
                 prepare.SFX["gunshot"].play()
                 pos = project(self.pos, (self.angle - .1745) % (2 * pi), 42) #end of rifle at 96x96
-                bullet  = Bullet(pos, self.angle, bullets, all_sprites)
-                distance = 2000.
-                x, y  = project(pos, self.angle, distance)
-                ani = Animation(centerx=x, centery=y, duration=distance/bullet.speed, round_values=True)
-                ani.callback = bullet.kill
-                ani.start(bullet.rect)
-                animations.add(ani)
+                shards = randint(6, 10)
+                for _ in range(shards):
+                    my_angle = self.angle + random() - 0.5 * (pi / 4)
+                    bullet = Bullet(pos, my_angle, bullets, all_sprites)
+
+                    distance = 400.
+                    x, y  = project(pos, my_angle, distance)
+                    ani = Animation(centerx=x, centery=y, duration=distance/bullet.speed, round_values=True)
+                    ani.callback = bullet.kill
+                    ani.start(bullet.rect)
+                    animations.add(ani)
                 scare_rect = self.collider.inflate(1200, 1200)
                 scared_turkeys = [t for t in turkeys if scare_rect.colliderect(t.collider)]
                 for scared in scared_turkeys:
