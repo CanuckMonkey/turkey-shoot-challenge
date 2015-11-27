@@ -12,7 +12,10 @@ from labels import Label
 
 
 def footprint_collide(left, right):
-    return left.collider.colliderect(right.collider)
+    inflate_by = 15
+    first = left.collider.inflate(inflate_by, inflate_by)
+    second = right.collider.inflate(inflate_by, inflate_by)
+    return first.colliderect(second)
 
 
 def make_background(size, tile_size=64):
@@ -206,12 +209,12 @@ class Hunting(GameState):
 
     def draw(self, surface):
         self.all_sprites.draw(self.world_surf)
-        for turkey in self.turkeys:
-            pg.draw.rect(self.world_surf, (255, 0, 0), turkey.collider)
-        for tree in self.trees:
-            pg.draw.rect(self.world_surf, (0, 255, 0), tree.collider)
-        for bullet in self.bullets:
-            pg.draw.rect(self.world_surf, (255, 255, 255), bullet.collider)
+        #for turkey in self.turkeys:
+        #    pg.draw.rect(self.world_surf, (255, 0, 0), turkey.collider)
+        #for tree in self.trees:
+        #    pg.draw.rect(self.world_surf, (0, 255, 0), tree.collider)
+        #for bullet in self.bullets:
+        #    pg.draw.rect(self.world_surf, (255, 255, 255), bullet.collider)
         rect = self.get_view_rect()
         surf = self.world_surf.subsurface(rect)
         surface.blit(surf, (0, 0))

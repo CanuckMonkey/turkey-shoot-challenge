@@ -161,12 +161,21 @@ class Hunter(pg.sprite.DirtySprite):
                 self.shells -= 1
                 prepare.SFX["gunshot"].play()
                 pos = project(self.pos, (self.angle - .1745) % (2 * pi), 42) #end of rifle at 96x96
-                shards = randint(6, 10)
+                if prepare.RIFLE_STYLE:
+                    shards = 1
+                else:
+                    shards = randint(6, 10)
                 for _ in range(shards):
-                    my_angle = self.angle + random() - 0.5 * (pi / 4)
+                    if prepare.RIFLE_STYLE:
+                        my_angle = self.angle
+                    else:
+                        my_angle = self.angle + random() - 0.5 * (pi / 4)
                     bullet = Bullet(pos, my_angle, bullets, all_sprites)
 
-                    distance = 400.
+                    if prepare.RIFLE_STYLE:
+                        distance = 2000.
+                    else:
+                        distance = 400.
                     x, y  = project(pos, my_angle, distance)
                     ani = Animation(centerx=x, centery=y, duration=distance/bullet.speed, round_values=True)
                     ani.callback = bullet.kill
