@@ -116,6 +116,7 @@ class Hunting(GameState):
         self.hunter.update(dt, keys, self.bullets, self.turkeys,
                                     self.colliders, self.all_sprites, 
                                     self.animations, self.world_rect)
+
         self.turkeys.update(dt, self.trees)
         self.bullets.update(dt)
         self.world_map.update(self.background, self.map_sprites, self.trees)
@@ -205,6 +206,9 @@ class Hunting(GameState):
         return view_rect
 
     def draw(self, surface):
+        for turkey in self.turkeys:
+            pg.draw.rect(turkey.image, (255, 0, 0), turkey.collider)
+
         self.all_sprites.draw(self.world_surf)
         rect = self.get_view_rect()
         surf = self.world_surf.subsurface(rect)
