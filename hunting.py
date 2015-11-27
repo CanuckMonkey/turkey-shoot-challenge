@@ -116,7 +116,6 @@ class Hunting(GameState):
         self.hunter.update(dt, keys, self.bullets, self.turkeys,
                                     self.colliders, self.all_sprites, 
                                     self.animations, self.world_rect)
-
         self.turkeys.update(dt, self.trees)
         self.bullets.update(dt)
         self.world_map.update(self.background, self.map_sprites, self.trees)
