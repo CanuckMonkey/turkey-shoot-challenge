@@ -159,7 +159,6 @@ class Hunter(pg.sprite.DirtySprite):
             self.stop_walking()
             self.rifle = not self.rifle
 
-
     def shoot(self, bullets, turkeys, all_sprites, animations):
         """
         Fire a bullet if the player has enough ammo and enough time has passed
