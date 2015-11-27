@@ -27,6 +27,7 @@ class Hunter(pg.sprite.DirtySprite):
         self.pos = pos
         self.angle = angle
         self.speed = 80 / 1000.
+        self.rifle = True
         self.controls = {
                 "turn left": [pg.K_LEFT, pg.K_a],
                 "turn right": [pg.K_RIGHT, pg.K_d],
@@ -111,6 +112,8 @@ class Hunter(pg.sprite.DirtySprite):
                     self.actions[action](dt)
         if keys[pg.K_SPACE]:
             self.shoot(bullets, turkeys, all_sprites, animations)
+        if keys[pg.K_g]:
+            self.switch()
         if not any((keys[x] for x in self.controls["move"])):
             if self.state == "move":
                 self.flip_state("idle")
@@ -148,6 +151,15 @@ class Hunter(pg.sprite.DirtySprite):
             self.pos = self.collider.center
             self.rect.center = self.pos
 
+    def switch(self):
+        """
+        Switch gun types if enough time has passed since the last shot/switch.
+        """
+        if self.cooldown_timer >= self.cooldown_time:
+            self.stop_walking()
+            self.rifle = not self.rifle
+
+
     def shoot(self, bullets, turkeys, all_sprites, animations):
         """
         Fire a bullet if the player has enough ammo and enough time has passed
@@ -161,21 +173,21 @@ class Hunter(pg.sprite.DirtySprite):
                 self.shells -= 1
                 prepare.SFX["gunshot"].play()
                 pos = project(self.pos, (self.angle - .1745) % (2 * pi), 42) #end of rifle at 96x96
-                if prepare.RIFLE_STYLE:
+                if self.rifle:
                     shards = 1
                 else:
-                    shards = randint(6, 10)
+                    shards = randint(4, 7)
                 for _ in range(shards):
-                    if prepare.RIFLE_STYLE:
+                    if self.rifle:
                         my_angle = self.angle
                     else:
-                        my_angle = self.angle + random() - 0.5 * (pi / 4)
+                        my_angle = self.angle + random() - 0.5 * (pi * 0.3)
                     bullet = Bullet(pos, my_angle, bullets, all_sprites)
 
-                    if prepare.RIFLE_STYLE:
+                    if self.rifle:
                         distance = 2000.
                     else:
-                        distance = 400.
+                        distance = 300.
                     x, y  = project(pos, my_angle, distance)
                     ani = Animation(centerx=x, centery=y, duration=distance/bullet.speed, round_values=True)
                     ani.callback = bullet.kill

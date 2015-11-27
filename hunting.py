@@ -12,8 +12,8 @@ from labels import Label
 
 
 def footprint_collide(left, right):
-    inflate_by = 16
-    first = left.collider.inflate(inflate_by, inflate_by)
+    inflate_by = 24
+    first = left.collider #.inflate(inflate_by, inflate_by)
     second = right.collider.inflate(inflate_by, inflate_by)
     return first.colliderect(second)
 
