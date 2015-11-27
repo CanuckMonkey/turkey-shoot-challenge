@@ -15,10 +15,13 @@ SCREEN = pg.display.set_mode(SCREEN_SIZE)
 SCREEN_RECT = SCREEN.get_rect()
 
 
-GFX   = tools.load_all_gfx(os.path.join("resources", "graphics"))
+GFX = tools.load_all_gfx(os.path.join("resources", "graphics"))
 SFX = tools.load_all_sfx(os.path.join("resources", "sounds"))
 FONTS = tools.load_all_fonts(os.path.join("resources", "fonts"))
 MUSIC = tools.load_all_music(os.path.join("resources", "music"))
+
+pg.display.set_icon(GFX["roast"])
+
 
 for num in range(1, 7):
     img = GFX["tree{}".format(num)]
