@@ -46,8 +46,8 @@ class WorldMap(pg.sprite.Sprite):
         self.surf.fill(self.frame_color)
         width, height = world_map.get_size()
         ICON_SIZE = 5
-        tree_map = world_map.copy()
-        trees.draw(tree_map)
+        tree_map = world_map #.copy()
+        #trees.draw(tree_map)
         my_map = pg.transform.scale(tree_map, (int(width / ICON_SIZE),
                                                 int(height / ICON_SIZE)))
         #my_map = world_map.copy()
